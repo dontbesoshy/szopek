@@ -12,13 +12,13 @@ Auth::routes();
 
 Route::get('/', function () {
     return redirect(route('books.index'));
-});
+})->name('/');
 
 Route::resource('books', BookController::class);
 
 Route::resource('authors', AuthorController::class);
 
-Route::resource('attributes', AttributeController::class)->only(['index']);
+Route::resource('attributes', AttributeController::class)->only(['index', 'edit']);
 
 Route::resource('categories', CategoryController::class)->only(['index']);
 

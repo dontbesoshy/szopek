@@ -12,6 +12,6 @@ class TaskTwoTest extends TestCase
         $book = Book::factory()->create();
         $response = $this->delete(route('books.destroy', $book));
         $response->assertStatus(200);
-        $this->assertDatabaseCount('books', 0);
+        $this->assertSoftDeleted($book);
     }
 }

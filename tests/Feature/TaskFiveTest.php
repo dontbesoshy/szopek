@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class TaskFiveTest extends TestCase
 {
-    public function testCanSeeBookEditPage(): void
+    public function testCanEditAttributes(): void
     {
         $attribute = Attribute::factory()->create();
         $response = $this->get(route('attributes.edit', $attribute));

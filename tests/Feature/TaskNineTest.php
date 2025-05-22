@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Enums\RoleEnum;
-use App\Models\Role;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
@@ -14,6 +13,7 @@ class TaskNineTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->seed(RoleSeeder::class);
         $this->seed(UserSeeder::class);
 
         $this->user = User::with('roles')->whereHas('roles', function ($query) {
@@ -21,7 +21,7 @@ class TaskNineTest extends TestCase
         })->first();
 
         $this->admin = User::with('roles')->whereHas('roles', function ($query) {
-            $query->where('name', RoleEnum::ADMIN->value);
+            $query->where('name', RoleEnum::ADMIN);
         })->first();
     }
 
@@ -36,7 +36,7 @@ class TaskNineTest extends TestCase
 
     public function testUserHasAccessToAdminPage(): void
     {
-        $this->assertTrue($this->user->hasRole(RoleEnum::ADMIN->value));
+        $this->assertTrue($this->admin->hasRole(RoleEnum::ADMIN->value));
 
         $response = $this->actingAs($this->admin)->get(route('page.admin'));
         $response->assertOk();

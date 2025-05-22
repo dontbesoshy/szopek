@@ -38,7 +38,7 @@
                                         {{ $attribute->weight }}
                                     </td>
                                     <td>
-                                        {{ $attribute->pages }}
+                                        {{ $attribute?->pages }}
                                     </td>
                                 </tr>
                             @endforeach

@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function user()
     {
-        if (Auth::user()->hasRole([RoleEnum::USER->value])) {
+        if (!Auth::user()->hasRole([RoleEnum::USER->value])) {
             return redirect()->route('/')->with(['error' => 'Brak uprawnień']);
         }
 
@@ -18,7 +18,7 @@ class PageController extends Controller
 
     public function admin()
     {
-        if (Auth::user()->hasRole([RoleEnum::ADMIN->value])) {
+        if (!Auth::user()->hasRole([RoleEnum::ADMIN->value])) {
             return redirect()->route('/')->with(['error' => 'Brak uprawnień']);
         }
 

@@ -12,8 +12,10 @@ trait HasRolesTrait
         return $this->belongsToMany(Role::class, 'users_roles');
     }
 
-    public function hasRole(...$roles)
+    public function hasRole(...$roles): bool
     {
-        return false;
+        $roles = collect($roles)->flatten()->all();
+
+        return $this->roles->pluck('name')->intersect($roles)->isNotEmpty();
     }
 }

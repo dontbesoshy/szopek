@@ -2,16 +2,25 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Enums\RoleEnum;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory()->count(2)->create();
+        Role::factory()->create([
+            'name' => RoleEnum::ADMIN->value,
+            'slug' => RoleEnum::ADMIN->value,
+        ]);
+
+        Role::factory()->create([
+            'name' => RoleEnum::USER->value,
+            'slug' => RoleEnum::USER->value,
+        ]);
     }
 }

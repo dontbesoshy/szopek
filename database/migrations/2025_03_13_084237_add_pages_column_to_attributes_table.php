@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->string('filename')->nullable();
+        Schema::table('attributes', function (Blueprint $table) {
+            $table->integer('pages')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('filename');
+        Schema::table('attributes', function (Blueprint $table) {
+            $table->dropColumn('pages');
         });
     }
 };

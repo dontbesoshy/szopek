@@ -26,4 +26,12 @@ class Author extends Model
     {
         return $this->dead_date->diffInYears($this->birth_date);
     }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

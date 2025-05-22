@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Dto\Book\UpdateBookDto;
 use App\Models\Book;
+use App\Services\BookService;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    public function __construct(private readonly BookService $bookService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -51,9 +57,9 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Book $book, UpdateBookDto $request)
     {
-        //
+        $this->bookService->update($book, $request);
     }
 
     /**

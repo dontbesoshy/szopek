@@ -11,4 +11,9 @@ class AttributeController extends Controller
         $attributes = Attribute::all();
         return view('attributes.index', compact('attributes'));
     }
+
+    public function edit(Attribute $attribute)
+    {
+        return view('attributes.edit', compact('attribute'));
+    }
 }
